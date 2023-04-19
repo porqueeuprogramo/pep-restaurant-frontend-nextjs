@@ -3,6 +3,6 @@ import {fetchMenus} from "@/api/menu";
 import {parseCookies} from "nookies";
 
 export default function useGetMenus() {
-    return useQuery(["get-menus"], fetchMenus);
+    return useQuery({ queryKey: ["get-menus"], queryFn: fetchMenus, refetchOnWindowFocus: false });
 }
 
