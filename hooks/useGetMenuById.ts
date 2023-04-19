@@ -1,12 +1,12 @@
 import {useQuery} from "@tanstack/react-query";
-import {fetchMenuById} from "@/api/menu";
+import {fetchMenuByUid} from "@/api/menu";
 
-export default function useGetMenuById(menuId: number) {
+export default function useGetMenuByUid(menuId: number) {
     return useQuery(
-        ["get-menu-by-id", menuId],
+        ["get-menu-by-uid", menuId],
         async () => {
             if(!menuId) return null
-            return await fetchMenuById(menuId)
+            return await fetchMenuByUid(menuId)
         } );
 }
 
