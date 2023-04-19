@@ -2,26 +2,25 @@ import {Button, FormControl, OutlinedInput} from "@mui/material";
 import {useRouter} from "next/router";
 import useGetMenuById from "@/hooks/useGetMenuById";
 import React, {useEffect, useState} from "react";
-import {deleteMenuById, editMenu} from "@/api/menu";
-import {setCookie} from "nookies";
+import {deleteMenuByUid, editMenu} from "@/api/menu";
 
 export default function MenuPageItem() {
     const router = useRouter();
-    const menuQuery = useGetMenuById(router.query.menuId);
+    const menuQuery = useGetMenuById(router.query.menuUid);
 
-    const [id, setId] = useState();
+    const [uid, setUid] = useState();
     const [language, setLanguage] = useState();
 
     const handleEdit = async (event : any) => {
         event.preventDefault();
-        const menu = { id: id, language: language }
-        await editMenu(router.query.menuId, menu);
+        const menu = { uid: uid, language: language }
+        await editMenu(router.query.menuUid, menu);
         menuQuery.refetch();
     }
 
     useEffect(() => {
         if (menuQuery.data) {
-            setId(menuQuery.data.id)
+            setUid(menuQuery.data.uid)
             setLanguage(menuQuery.data.language)
         }
     }, [menuQuery.data]);
@@ -30,21 +29,21 @@ export default function MenuPageItem() {
 
     const handleDelete = async (event : any) => {
         event.preventDefault();
-        await deleteMenuById(router.query.menuId);
+        await deleteMenuByUid(router.query.menuUid);
         router.push('/menu')
     }
 
 
     return (
         <>
-            <h1>Menu - {router.query.menuId}</h1>
-            <li key={menuQuery.data.id}>{menuQuery.data.language}</li>
+            <h1>Menu - {router.query.menuUid}</h1>
+            <li key={menuQuery.data.Uid}>{menuQuery.data.language}</li>
             <Button variant="contained" href={"/menu"}>Menu</Button>
 
             <h1>Edit Menu</h1>
             <form onSubmit={handleEdit}>
                 <FormControl sx={{width: '25ch'}}>
-                    <OutlinedInput placeholder="id" value={id} onChange={e => setId(e.target.value)}/>
+                    <OutlinedInput placeholder="uid" value={uid} onChange={e => setId(e.target.value)}/>
                 </FormControl>
                 <FormControl sx={{width: '25ch'}}>
                     <OutlinedInput placeholder="language" value={language} onChange={e => setLanguage(e.target.value)}/>

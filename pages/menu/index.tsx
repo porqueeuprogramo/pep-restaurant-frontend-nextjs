@@ -11,12 +11,12 @@ export default function MenuPage() {
 
     const menus = useGetMenus();
 
-    const [id, setId] = useState();
+    const [uid, setUid] = useState();
     const [language, setLanguage] = useState();
 
     const handleSubmit = async (event : any) => {
         event.preventDefault();
-        const menu = { id: id, language: language }
+        const menu = { language: language }
         await createMenu(menu);
         menus.refetch();
     }
@@ -24,16 +24,13 @@ export default function MenuPage() {
     return (
         <>
             {menus.data?.map(menu => <>
-                <Link key={menu.id} href={`/menu/${menu.id}`}>{menu.language}</Link>
+                <Link key={menu.uid} href={`/menu/${menu.uid}`}>{menu.language}</Link>
                 <br/>
             </>)}
 
             <Button variant="contained" href={"/"}>Home</Button>
 
             <form onSubmit={handleSubmit}>
-                <FormControl sx={{width: '25ch'}}>
-                    <OutlinedInput placeholder="id" value={id} onChange={e => setId(e.target.value)}/>
-                </FormControl>
                 <FormControl sx={{width: '25ch'}}>
                     <OutlinedInput placeholder="language" value={language} onChange={e => setLanguage(e.target.value)}/>
                 </FormControl>
