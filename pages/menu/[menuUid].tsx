@@ -43,9 +43,6 @@ export default function MenuPageItem() {
             <h1>Edit Menu</h1>
             <form onSubmit={handleEdit}>
                 <FormControl sx={{width: '25ch'}}>
-                    <OutlinedInput placeholder="uid" value={uid} onChange={e => setId(e.target.value)}/>
-                </FormControl>
-                <FormControl sx={{width: '25ch'}}>
                     <OutlinedInput placeholder="language" value={language} onChange={e => setLanguage(e.target.value)}/>
                 </FormControl>
                 <Button type="submit" variant="contained">Submit</Button>
