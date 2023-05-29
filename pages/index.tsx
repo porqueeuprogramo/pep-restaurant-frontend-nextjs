@@ -16,8 +16,8 @@ export default function Home(props: any) {
 
     return (
         <>
-            <Link passHref href={"/menu"}>
-                <Button variant="contained" >Menu</Button>
+            <Link passHref href={"/restaurant"}>
+                <Button variant="contained" >Restaurant List</Button>
             </Link>
         </>
     )
