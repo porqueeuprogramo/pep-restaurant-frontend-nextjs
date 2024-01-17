@@ -4,7 +4,6 @@ import token from "@/api/token";
 import {useEffect} from "react";
 import {setCookie} from "nookies";
 import Link from "next/link";
-import {api} from "@/api";
 
 const inter = Inter({ subsets: ['latin'] })
 

@@ -9,7 +9,6 @@ import useGetRestaurantByUid from "@/hooks/useGetRestaurantByUid";
 export default function RestaurantPageItem() {
     const router = useRouter();
     const restaurantQuery = useGetRestaurantByUid(router.query.restaurantUid);
-    const daysScheduleMap = new Map();
 
     const [uid, setUid] = useState();
     //const [language, setLanguage] = useState();
